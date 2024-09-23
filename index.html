@@ -293,7 +293,7 @@
         const ticker1 = document.querySelector('.ticker1');
         const ticker2 = document.querySelector('.ticker2');
         const logoTopRight = document.getElementById('logo-top-right');
-        const serverButtonsContainer = document.querySelector('.server-buttons'); // Select the server buttons containr
+        const serverButtonsContainer = document.querySelector('.server-buttons'); // Select the server buttons container
 
         submitBtn.addEventListener('click', () => {
             if (passwordInput.value === PASSWORD) {
@@ -320,16 +320,44 @@
         function redirectToCopa() {
             window.location.href = "";
         }
-
+        
+        // Function to switch server and highlight the active button
         function changeServer(server) {
-            const servers = {
-                server1: "https://talhas.fancodelive.rf.gd/",
-                server2: "https://talhas.arena1premium.rf.gd/",
-                server3: "https://talhas.arena2premium.rf.gd/",
-                server4: "https://talhas.arena3premium.rf.gd/",
-                server5: "https://talhas.arenasport1.rf.gd/"
-            };
-            iframePlayer.src = servers[server];
+            // Change the iframe src or video player source based on the serve
+            let iframe = document.getElementById('my-iframe');
+            let video = document.getElementById('my-video');
+
+            if (server === 'server1') {
+                iframe.src = 'https://talhas.fancodelive.rf.gd/';
+                video.src = '';  // Clear HLS video if necessary
+                iframe.style.display = 'block';  // Show iframe
+                video.style.display = 'none';    // Hide video
+            } else if (server === 'server2') {
+                iframe.src = 'https://talhas.arena1premium.rf.gd/';
+                video.src = '';  // Clear HLS video if necessary
+                iframe.style.display = 'block';  // Show iframe
+                video.style.display = 'none';    // Hide vide
+            } else if (server === 'server3') {
+                iframe.src = 'https://talhas.arena2premium.rf.gd/';
+                video.src = '';  // Clear HLS video if necessary
+                iframe.style.display = 'block';  // Show ifram
+                video.style.display = 'none';    // Hide video
+            } else if (server === 'server4') {
+                iframe.src = 'https://talhas.arena3premium.rf.gd/';
+                video.src = '';  // Clear HLS video if necessary
+                iframe.style.display = 'block';  // Show iframe
+                video.style.display = 'none';    // Hide video
+            } else if (server === 'server5') {
+                iframe.src = 'https://talhas.arenasport1.rf.gd/';
+                video.src = '';  // Clear HLS video if necessary
+                iframe.style.display = 'block';  // Show iframe
+                video.style.display = 'none';    // Hide video
+            }
+
+            // Highlight the active server button
+            let buttons = document.querySelectorAll('.server-button');
+            buttons.forEach(button => button.classList.remove('active')); // Remove active class from all buttons
+            document.getElementById(server + '-btn').classList.add('active'); // Add active class to clicked butto
         }
     </script>
 </body>
